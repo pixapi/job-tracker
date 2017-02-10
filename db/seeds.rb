@@ -13,3 +13,7 @@ COMPANIES.each do |name|
     puts "  Created #{company.jobs[num].title}"
   end
 end
+
+category1 = Category.create(title: "Education")
+category2 = Category.create(title: "Finance")
+category3 = Category.create(title: "Web Development")
