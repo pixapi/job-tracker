@@ -1,5 +1,5 @@
 <h3>Post a Comment</h3>
-<%= form_for [ @job, @comment ] do |f| %>
+<%= form_for [ @company, @job, @comment ] do |f| %>
 <p>
   <%= f.label :author_name %>
   <%= f.text_field :author_name %><br />
@@ -9,6 +9,6 @@
   <%= f.text_area :body %><br />
 </p>
 <p>
-  <%= f.submit %>
+  <%= f.submit "Add Comment" %>
 </p>
 <% end %>

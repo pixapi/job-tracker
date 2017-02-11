@@ -4,7 +4,7 @@ describe Comment do
   describe "validations" do
     context "invalid attributes" do
       it "is invalid without an author_name" do
-        comment = Comment.new(body: "This is article1")
+        comment = Comment.new(body: "This is the first comment")
         expect(comment).to be_invalid
       end
 
