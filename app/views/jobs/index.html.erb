@@ -5,3 +5,8 @@ All Jobs for <strong><%= @company.name %></strong>
   <li><%= link_to job.title, company_job_path(job.company_id, job.id) %> at <%= job.company.name %></li>
 <% end %>
 </ul>
+
+<h3> Contacts </h3>
+<%= render partial: 'jobs/contact', collection: @company.contacts %>
+
+<%= render partial: 'contacts/form' %>

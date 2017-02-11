@@ -1,9 +1,11 @@
 <h3>All Companies</h3>
 
-<% @companies.each do |company| %>
-  <div class=company_<%= company.id %>>
-    <%= link_to company.name, company_path(company) %><br>
-    <%= link_to "Edit", edit_company_path(company) %>
-    <%= link_to "Delete", company_path(company), method: "delete" %>
-  </div>
+<ul>
+  <% @companies.each do |company| %>
+    <div class=company_<%= company.id %>>
+      <li><%= link_to company.name, company_path(company) %>
+      <%= link_to '<button type="button">Edit</button>'.html_safe, edit_company_path(company) %>
+      <%= link_to '<button type="button">Delete</button>'.html_safe, company_path(company), method: "delete" %>
+    </div>
 <% end %>
+</ul>

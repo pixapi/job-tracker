@@ -1,0 +1,9 @@
+<div>
+  <p class="contact">
+      <% @company.contacts.each do |contact| %>
+        Name: <%= contact.first_name %> <%= contact.last_name %><br />
+        Position: <%= contact.position%><br />
+        Contact: <%= contact.e_mail %>
+      <% end %>
+  </p>
+</div>
