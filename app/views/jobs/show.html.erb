@@ -17,4 +17,9 @@ Company: <%= link_to @job.company.name, company_path(@job.company) %><br>
 
 <%= link_to "Edit", edit_company_job_path(@job.company_id, @job.id) %>
 
-<%= link_to "Delete", company_job_path(@job.company_id, @job.id), method: :delete %> -->
+<%= link_to "Delete", company_job_path(@job.company_id, @job.id), method: :delete %>
+
+<h3> Comments </h3>
+<%= render partial: 'jobs/comment', collection: @job.comments.reverse %>
+<%= render partial: 'comments/form' %>
+<%#= link_to "<<Back to Jobs List", company_jobs_path(@job.company) %>
