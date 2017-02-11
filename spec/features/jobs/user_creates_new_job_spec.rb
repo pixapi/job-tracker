@@ -9,6 +9,7 @@ describe "User creates a new job" do
     fill_in "job[description]", with: "So fun!"
     fill_in "job[level_of_interest]", with: 80
     fill_in "job[city]", with: "Denver"
+    # select "Education", from: "job.category_id"
 
     click_button "Create"
 
