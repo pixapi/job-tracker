@@ -3,4 +3,13 @@ class Job < ActiveRecord::Base
   belongs_to :company
   belongs_to :category
   has_many :comments
+
+  # def company_name
+  #   if company
+  #     company.name
+  #   else
+  #     "No Company Name"
+  #   end
+  # end
+
 end

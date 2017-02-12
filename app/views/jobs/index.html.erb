@@ -1,8 +1,10 @@
+<% if @company %>
 All Jobs for <strong><%= @company.name %></strong>
+<% end %>
 
 <ul>
 <% @jobs.each do |job| %>
-  <li><%= link_to job.title, company_job_path(job.company_id, job.id) %> at <%= job.company.name %></li>
+  <li><%= link_to job.title, company_job_path(@company, job) %> at <%= job.company.name %> | <%= job.city %></li>
 <% end %>
 </ul>
 
