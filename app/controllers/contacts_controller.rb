@@ -13,7 +13,6 @@ class ContactsController < ApplicationController
     @company = Company.find(params[:company_id])
     @contact.company_id = @company.id
     @contact.save
-    # byebug
 
     redirect_to company_jobs_path(@company)
   end

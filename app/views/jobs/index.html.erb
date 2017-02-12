@@ -3,12 +3,19 @@ All Jobs for <strong><%= @company.name %></strong>
 <% end %>
 
 <ul>
-<% @jobs.each do |job| %>
-  <li><%= link_to job.title, company_job_path(@company, job) %> at <%= job.company.name %> | <%= job.city %></li>
-<% end %>
+  <% @jobs.each do |job| %>
+    <li>
+      <%= link_to job.title, company_job_path(job.company_id, job.id) %> at <%= job.company.name %>
+      <% if @filter == "location"%> | <%= job.city %>
+      <% elsif @filter == "interest"%> | Level of interest: <%= job.level_of_interest %>
+      <% end %>
+    </li>
+  <% end %>
 </ul>
 
+<% if @company %>
 <h3> Contacts </h3>
 <%= render partial: 'jobs/contact', collection: @company.contacts %>
 
 <%= render partial: 'contacts/form' %>
+<% end %>

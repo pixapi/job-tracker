@@ -11,7 +11,7 @@ COMPANIES.each do |name|
   10.times do |num|
     job = company.jobs.create!(title: JOBS.sample, description: "What a great position!", level_of_interest: num + rand(100), city: CITIES.sample)
     puts "  Created #{company.jobs[num].title}"
-    job.comments.create!()##
+    job.comments.create!(author_name: "Shakespeare", body: "That's a great job opportunity!")
   end
 end
 

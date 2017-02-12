@@ -2,7 +2,10 @@ class JobsController < ApplicationController
   def index
     if params[:sort] == "location"
       @jobs = Job.all.sort_by(&:city)
-              # Job.all.sort_by { |job| job.city }
+      @filter = "location"
+    elsif params[:sort] == "interest"
+      @jobs = Job.all.sort_by(&:level_of_interest)
+      @filter = "interest"
     else
       @jobs = Job.all
       @company = Company.find(params[:company_id])
