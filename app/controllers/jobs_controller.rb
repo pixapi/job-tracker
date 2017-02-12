@@ -15,6 +15,23 @@ class JobsController < ApplicationController
     end
   end
 
+  def dashboard
+    @jobs = Job.all.group(:level_of_interest).count.sort.to_h
+
+    grouped_by_company = Job.all.group(:company_id).average(:level_of_interest)
+
+    no_bigdecimal = grouped_by_company.inject({}) { |h, (k,v)| h[k] = v.floor; h }
+
+    top_three = no_bigdecimal.first(3).to_h
+
+    @top_companies = top_three.map do |k, v|
+      "#{Company.find(k).name}(#{v})"
+    end
+  end
+    #Group jobs by company
+    #Average of interest for each Group
+    # Display top 3 companies name and average
+
   def new
     @company = Company.find(params[:company_id])
     @job = Job.new

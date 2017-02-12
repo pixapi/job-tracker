@@ -20,7 +20,6 @@ RSpec.describe "User sees all jobs for a category" do
                       company_id: company.id,
                       category_id: category.id,
                       )
-    # byebug
     # job1.category.create!(category_id: category.id)
     # job2.category.create!(category_id: category.id)
 
