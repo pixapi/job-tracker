@@ -16,10 +16,8 @@
 <h4>- Number of jobs per location:</h4>
 <ul>
   <% @by_city.each do |city, ocurrence| %>
-  <li><%= link_to "#{city}", :controller => "jobs", :query => "location=" %>: <%= ocurrence %></li>
+  <li><%= link_to city, jobs_path(location: city) %>: <%= ocurrence %></li>
   <% end %>
 </ul>
 
-<%#A count of jobs by location with a link to visit a page with jobs only in that location.
-The url should be /jobs?location=Denver.%>
-<%#= link_to "See all jobs listed by city", company_jobs_path(params[:sort] = "location") %>
+<%= link_to "See all jobs listed by city", company_jobs_path(params[:sort] = "location") %>

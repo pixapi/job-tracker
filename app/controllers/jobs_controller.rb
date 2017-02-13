@@ -8,8 +8,9 @@ class JobsController < ApplicationController
       @jobs = Job.all.sort_by(&:level_of_interest)
       @filter = "interest"
       @topic = "listed by level of interest"
-    elsif params[:location] != nil
+    elsif params[:location]
       @jobs = Job.where(city: params[:location])
+      param1 = params[:location]
       @topic = "in #{params[:location]}"
     else
       @jobs = Job.all
