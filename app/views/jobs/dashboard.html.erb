@@ -1,17 +1,25 @@
 <h1>Job dashboard</h1>
 <h4>- Count of jobs by level of interest:</h4>
 <ul>
-<% @jobs.each do |interest, ocurrence| %>
+<% @jobs_by_interest.each do |interest, ocurrence| %>
 <li>Level of interest: <%= interest%> (<%= ocurrence%>)</li>
 <% end %>
 </ul>
-<h4>- Top 3 companies in level_of_interest and average:</h4>
-<% @top_companies.each do |company| %>
-<%= company %><br/>
-<% end %>
-<
-<%#The top three companies ranked by average level of interest along with
-their respective average level of interest.
 
-A count of jobs by location with a link to visit a page with jobs only in that location.
+<h4>- Top 3 companies in level_of_interest and average:</h4>
+<ol>
+<% @top_companies.each do |company| %>
+<li><%= company %><br/></li>
+<% end %>
+</ol>
+
+<h4>- Number of jobs per location:</h4>
+<ul>
+  <% @by_city.each do |city, ocurrence| %>
+  <li><%= link_to "#{city}", :controller => "jobs", :query => "location=" %>: <%= ocurrence %></li>
+  <% end %>
+</ul>
+
+<%#A count of jobs by location with a link to visit a page with jobs only in that location.
 The url should be /jobs?location=Denver.%>
+<%#= link_to "See all jobs listed by city", company_jobs_path(params[:sort] = "location") %>
