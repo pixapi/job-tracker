@@ -37,4 +37,12 @@ describe Contact do
       end
     end
   end
+
+  describe "relationships" do
+    it "belongs to a company" do
+      contact = Contact.new(first_name: "Carmen", last_name: "Sevilla", position: "General Manager", e_mail: "csevilla@ge.com")
+      expect(contact).to respond_to(:company)
+    end
+  end
+
 end

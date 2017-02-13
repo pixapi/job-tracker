@@ -1,4 +1,11 @@
 <h1>Job dashboard</h1>
+
+<%= link_to "See all jobs listed by city", jobs_path(sort: "location") %><br />
+
+<%= link_to "See all jobs listed by level of interest", jobs_path(sort: "interest") %><br />
+
+<%= link_to "See all companies", companies_path %>
+
 <h4>- Count of jobs by level of interest:</h4>
 <ul>
 <% @jobs_by_interest.each do |interest, ocurrence| %>
@@ -19,5 +26,3 @@
   <li><%= link_to city, jobs_path(location: city) %>: <%= ocurrence %></li>
   <% end %>
 </ul>
-
-<%= link_to "See all jobs listed by city", company_jobs_path(params[:sort] = "location") %>
