@@ -1,44 +1,50 @@
 class JobsController < ApplicationController
   def index
     if params[:sort] == "location"
-      @jobs = Job.all.sort_by(&:city)
-      @filter = "location"
-      @topic = "listed by city"
+      sort_location_query
     elsif params[:sort] == "interest"
-      @jobs = Job.all.sort_by(&:level_of_interest)
-      @filter = "interest"
-      @topic = "listed by level of interest"
+      sort_interest_query
     elsif params[:location]
-      @jobs = Job.where(city: params[:location])
-      param1 = params[:location]
-      @topic = "in #{params[:location]}"
+      location_city_query
     else
-      @jobs = Job.all
-      @company = Company.find(params[:company_id])
-      @jobs = @company.jobs
-      @contact = Contact.new
-      @contact.company_id = @company.id
-      @topic = "for #{@company.name}"
+      company_jobs
     end
+  end
+
+  def sort_location_query
+    @jobs = Job.all.sort_by(&:city)
+    @filter = "location"
+    @topic = "listed by city"
+  end
+
+  def sort_interest_query
+    @jobs = Job.all.sort_by(&:level_of_interest)
+    @filter = "interest"
+    @topic = "listed by level of interest"
+  end
+
+  def location_city_query
+    @jobs = Job.where(city: params[:location])
+    param1 = params[:location]
+    @topic = "in #{params[:location]}"
+  end
+
+  def company_jobs
+    @jobs = Job.all
+    @company = Company.find(params[:company_id])
+    @jobs = @company.jobs
+    @contact = Contact.new
+    @contact.company_id = @company.id
+    @topic = "for #{@company.name}"
+  end
+
+  def homepage
   end
 
   def dashboard
-    @jobs_by_interest = Job.all.group(:level_of_interest).count.sort.to_h
-    sort_jobs_by_company
-  end
-
-  def sort_jobs_by_company
-    by_company = Job.all.group(:company_id).average(:level_of_interest)
-    no_bigdecimal = by_company.inject({}) { |h, (k,v)| h[k] = v.floor; h }
-    top_three = no_bigdecimal.first(3).to_h
-    @top_companies = top_three.map do |k, v|
-      "#{Company.find(k).name}(#{v})"
-    end
-    sort_jobs_by_city
-  end
-
-  def sort_jobs_by_city
-    @by_city = Job.all.group(:city).count.sort.to_h
+    @jobs_by_interest = Job.sort_by_interest
+    @top_companies = Job.sort_jobs_by_company
+    @jobs_by_city = Job.sort_jobs_by_city
   end
 
   def new

@@ -12,6 +12,7 @@ COMPANIES.each do |name|
     job = company.jobs.create!(title: JOBS.sample, description: "What a great position!", level_of_interest: num + rand(100), city: CITIES.sample)
     puts "  Created #{company.jobs[num].title}"
     job.comments.create!(author_name: "Shakespeare", body: "That's a great job opportunity!")
+    company.contacts.create(first_name: "Dan", last_name: "Olson", position: "McGiver", e_mail: "dolson@aol.com", company_id: company.id)
   end
 end
 

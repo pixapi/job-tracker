@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root to: 'companies#index'
-  
+  root to: 'jobs#homepage'
+
   resources :companies do
     resources :contacts
     resources :jobs do
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :categories
 
   resources :jobs, only: [:index]
+
   get '/dashboard', to: "jobs#dashboard", as: "dashboard"
 
   get '/jobs?location=', to: "jobs#index", as: "index"

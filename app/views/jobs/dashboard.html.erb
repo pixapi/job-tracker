@@ -4,7 +4,9 @@
 
 <%= link_to "See all jobs listed by level of interest", jobs_path(sort: "interest") %><br />
 
-<%= link_to "See all companies", companies_path %>
+<%= link_to "See all companies", companies_path %><br />
+
+<%= link_to "Back to homepage", '/' %>
 
 <h4>- Count of jobs by level of interest:</h4>
 <ul>
@@ -22,7 +24,7 @@
 
 <h4>- Number of jobs per location:</h4>
 <ul>
-  <% @by_city.each do |city, ocurrence| %>
+  <% @jobs_by_city.each do |city, ocurrence| %>
   <li><%= link_to city, jobs_path(location: city) %>: <%= ocurrence %></li>
   <% end %>
 </ul>
