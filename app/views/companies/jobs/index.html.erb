@@ -1,0 +1,25 @@
+<h1>All Jobs <%= @topic %></h1>
+
+<ul>
+  <% @jobs.each do |job| %>
+    <li>
+      <%= link_to job.title, company_job_path(job.company_id, job.id) %> at <%= job.company.name %>
+      <% if @filter == "location"%> | <%= job.city %>
+      <% elsif @filter == "interest"%> | Level of interest: <%= job.level_of_interest %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @company %>
+<h3> Contacts </h3>
+<%= render partial: 'jobs/contact', collection: @company.contacts %>
+
+<%= render partial: 'contacts/form' %>
+<% end %>
+
+<%= link_to "Back to homepage", companies_path %> <br/>
+
+<%= link_to "Back to all companies", companies_path %><br />
+
+<%= link_to "Back to dashboard", dashboard_path %>

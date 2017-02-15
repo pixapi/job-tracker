@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :companies do
     resources :contacts
-    resources :jobs do
+    resources :jobs, controller: 'companies/jobs' do
       resources :comments
     end
   end
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: "jobs#dashboard", as: "dashboard"
 
-  get '/jobs?location=', to: "jobs#index", as: "index"
+  # get '/jobs?location=', to: "jobs#index", as: "index"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

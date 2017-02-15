@@ -41,6 +41,7 @@ group :development, :test do
   gem 'launchy'
   gem "factory_girl_rails"
   gem "database_cleaner"
+  gem 'rails_12factor', group: :production
 end
 
 group :development do
