@@ -2,7 +2,7 @@
 
 <ul>
   <% @companies.each do |company| %>
-    <div class=company_<%= company.id %>>
+    <div class="company"<%= company.id %>>
       <li><%= link_to company.name, company_path(company) %>
       <%= link_to '<button type="button">Edit</button>'.html_safe, edit_company_path(company) %>
       <%= link_to '<button type="button">Delete</button>'.html_safe, company_path(company), method: "delete" %>
